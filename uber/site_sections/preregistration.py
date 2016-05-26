@@ -167,9 +167,6 @@ class Root:
                 if session.valid_attendees().filter_by(first_name=attendee.first_name, last_name=attendee.last_name, email=attendee.email).count():
                     raise HTTPRedirect('duplicate?id={}', group.id if attendee.paid == c.PAID_BY_GROUP else attendee.id)
 
-                if attendee.banned:
-                    raise HTTPRedirect('banned?id={}', group.id if attendee.paid == c.PAID_BY_GROUP else attendee.id)
-
                 raise HTTPRedirect('index')
         else:
             if edit_id is None:
